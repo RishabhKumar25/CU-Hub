@@ -1,0 +1,165 @@
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: #0d0d0d;
+        background-color: #fef9f8;
+
+}
+
+
+.login_section{
+    width:100vw;
+    height:100vh;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+
+
+
+
+}
+
+.login_parent{
+    background-color: #5AB9EA;
+    width:80;
+    height:60vh;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+/*    background-color: #ef9273 ;
+*/    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+
+
+
+}
+
+.login_left{
+    width: 25vw;
+    height: 60vh;
+    padding: 3rem;
+    text-align: center;
+        background-color: #fef9f8;
+}
+
+.signup_left{
+    height: 80vh !important;
+}
+.signup_parent{
+    height: 80vh !important;
+}
+.login_left input{
+    margin: 0.7rem;
+}
+
+.login_left input[type=text]{
+    width: 15vw;
+    height: 5vh;
+    padding: 1rem;
+     border: none;
+  border-bottom: 2px solid black;
+}
+
+
+.login_left input[type=password]{
+    width: 15vw;
+    height: 5vh;
+    padding: 1rem;
+    border: none;
+  border-bottom: 2px solid black;
+
+}
+
+.login_left input[type=email]{
+    width: 15vw;
+    height: 5vh;
+    padding: 1rem;
+     border: none;
+  border-bottom: 2px solid black;
+}
+
+.login_right{
+    width: 25vw;
+    height: 60vh;
+}
+
+.login_right_content{
+
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.box{
+    width: 15vw;
+    height: 4vh;
+    margin: 25px auto;
+    text-align: center;
+    color: #0d0d0d;
+
+}
+
+.box1{
+    border: none;
+    background-color: #fef9f8;
+    border-top: 2px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    opacity: 0.9;
+
+
+}
+
+.box2{
+    border: none;
+    border-bottom: 2px solid black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    color: #fff5ee;
+
+
+}
+
+.box3{
+    border: none;
+    background-color: #fef9f8;
+    border-top: 2px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    opacity: 0.9;
+
+
+
+}
+
+
+.login_right_social_icons i{
+    font-size: 1.5rem;
+    color: #0d0d0d;
+}
+
+
+
+.submit_btn{
+
+/*    background-color: #ef9273;
+*/   
+/* color: #0d0d0d;
+*/    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin: 12px;
+    border: none;
+    background-color: #5680E9;
+    color: white;
+}
+
