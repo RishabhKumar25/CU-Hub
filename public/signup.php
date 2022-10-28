@@ -1,6 +1,10 @@
 <?php
 
+
 include("config.php");
+include ("loginModal.php");
+include("header.php");
+
 
 ?>
 
@@ -12,8 +16,10 @@ include("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CU HUB - LOGIN</title>
-    <link rel="stylesheet" href="./assests/styles/style.css">
+    <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
 
@@ -35,11 +41,12 @@ include("config.php");
           <input type="email" placeholder="Email" name="email"/>
           <input type="password" placeholder="Password" name="password"/>
           <input type="password" placeholder="Confirm Password" name="cpassword"/>
-          <button type="submit" class="submit_btn" name="register">Sign up</button>
+          <button type="submit" class="primary_btn" name="register">Sign up</button>
 
-          <p style="font-size:0.7rem;">Already have an account? <a href="index.php"><span style="font-size:1rem"> Login here</span></p></a>
 
         </form>
+
+          <button class="btn btn-primary text-white ms-5" data-bs-toggle="modal" data-bs-target="#loginModal"  type="submit">Login</button>
       </div>
       <div class="login_right">
 
@@ -70,6 +77,9 @@ include("config.php");
        </div>
     </div>
 
+
+
+
   </section>
 
   
@@ -84,6 +94,10 @@ include("config.php");
         $cpassword = $_POST["cpassword"];
 
        $result =  mysqli_query($con,"insert into login values('','$name','$username','$email','$password','$cpassword')");
+
+        mysqli_query($con,"insert into education values('','$username','','','')");
+        mysqli_query($con,"insert into professional values('','$username','','','')");
+
       
 
       if($result){

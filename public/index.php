@@ -1,6 +1,8 @@
 <?php
 
 include("config.php");
+session_start();
+
 
 ?>
 
@@ -12,10 +14,12 @@ include("config.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CU HUB - LOGIN</title>
-    <link rel="stylesheet" href="./assests/styles/style.css">
+    <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
+
+    
 
   <section class="login_section">
 
@@ -26,7 +30,7 @@ include("config.php");
           <input type="text" placeholder="Username" name="username"/>
           <input type="password" placeholder="Password" name ="password"/>
          <a href="forgotpassword.php"> <p style="text-align: right !important; font-size: 0.7rem;"> Forgot your password? </p></a>
-          <button type="submit" class="submit_btn" name="login">Login</button>
+          <button type="submit" class="primary_btn" name="login">Login</button>
 
           <p style="font-size:0.7rem;">Don't have an account? <a href="signup.php"><span style="font-size:1rem">Create your account</span></p></a>
 
@@ -77,7 +81,9 @@ include("config.php");
     $result = mysqli_fetch_array($res);
 
     if($result){
- header("location:profile.php");
+      $_SESSION["login_sess"]=1;
+      $_SESSION['login_user']=$username;
+ header("location:personalProfile.php");
 }
 else{
 
