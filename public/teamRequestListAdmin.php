@@ -2,7 +2,15 @@
 
 include("header.php");
 include("config.php");
-if(isset($_SESSION['login_user'])){
+
+if(!isset($_SESSION['login_sess'])){
+     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Please login first
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+echo "<script>setTimeout(\"location.href = 'teamHome.php';\",1500);</script>";
+}else{
+
 $username = $_SESSION['login_user'];
 }
 
@@ -21,10 +29,10 @@ $username = $_SESSION['login_user'];
 
     <title>Hackathons - Home</title>
     <style>
-    	.text_box{
-    		display: flex;
-    		justify-content: space-between;
-    	}
+      .text_box{
+        display: flex;
+        justify-content: space-between;
+      }
     </style>
   </head>
   <body>
@@ -33,16 +41,18 @@ $username = $_SESSION['login_user'];
 
     <?php
 
-    $res = mysqli_query($con,"select * from teamRequest_list");
+    $res = mysqli_query($con,"select * from teamRequest_list where team_request_username = '$username'");
+    $noResult = true;
 
     while($row =mysqli_fetch_assoc($res)){
+      $noResult = false;
 
-    	$team_request_id = $row['team_request_id'];
-    	$team_request_desc = $row['team_request_desc'];
-    	$team_request_category = $row['team_request_category'];
-    	$team_request_skills = $row['team_request_skills'];
-    	$team_request_email = $row['team_request_email'];
-    	$team_request_username = $row['team_request_username'];
+      $team_request_id = $row['team_request_id'];
+      $team_request_desc = $row['team_request_desc'];
+      $team_request_category = $row['team_request_category'];
+      $team_request_skills = $row['team_request_skills'];
+      $team_request_email = $row['team_request_email'];
+      $team_request_username = $row['team_request_username'];
       
 
 
@@ -53,6 +63,7 @@ $username = $_SESSION['login_user'];
   <div class="card-body">
     <p class="card-text">'.nl2br($team_request_desc).'</p>
      <label for="" class="form-label fw-bold">Category :</label>
+
 
 
     <div class="card-text">'.$team_request_category.'</div>
@@ -75,6 +86,14 @@ $username = $_SESSION['login_user'];
 
     }
 
+if($noResult){
+
+    echo '<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">No Result Found</h1>
+  </div>
+</div>';
+}
 
 
 

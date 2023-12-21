@@ -1,6 +1,8 @@
 <?php
 include("config.php");
 include("header.php");
+include("loginModal.php");
+
 // if(!isset($_SESSION['login_sess'])){
 // 	header('location:index.php');
 // }
@@ -8,46 +10,14 @@ if(!isset($_SESSION['login_sess'])){
 $loggedin = false;
 
 }
-
-
-?>
-
-<?php
-
 $method = $_SERVER['REQUEST_METHOD'];
 $category_id = $_GET['category_id'];
 
 $showAlert = false;
 
 
-if(isset($_POST['problemsubmit'])){
-
-	$problemtitle = $_POST['problemtitle'];
-	$problemdesc = $_POST['problemdesc'];
-
-	if(!isset($_SESSION['login_sess'])){
-
-		echo "Please login to ask a question";
-
-	}else{
-		      $username = $_SESSION["login_user"];
-
-
-	$result = mysqli_query($con,"insert into thread_list values('','$problemtitle','$problemdesc','$category_id','$username')");
-
-	if($result){
-
-		echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success!</strong> Your question is posted succesfully..
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-	}
-
-}
-}
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,7 +189,41 @@ if(isset($_POST['problemsubmit'])){
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+
   </p>
+
+
+<?php
+
+
+
+if(isset($_POST['problemsubmit'])){
+
+  $problemtitle = $_POST['problemtitle'];
+  $problemdesc = $_POST['problemdesc'];
+
+  if(!isset($_SESSION['login_sess'])){
+
+echo '<p class="lead fw-bold">To start a discussion please login first. </p> <button class="btn btn-primary text-white ms-5" data-bs-toggle="modal" data-bs-target="#loginModal"  type="submit">Login</button>';
+  }else{
+          $username = $_SESSION["login_user"];
+
+
+  $result = mysqli_query($con,"insert into thread_list values('','$problemtitle','$problemdesc','$category_id','$username')");
+
+  if($result){
+
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Your question is posted succesfully..
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+  }
+
+}
+}
+
+
+?>
 </div>
 </div>
 

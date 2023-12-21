@@ -1,4 +1,13 @@
+<?php
+  
+$username = $_GET['username'];
+include("config.php");
+$current_username = $_SESSION["login_user"];
 
+
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -64,10 +73,19 @@ div.content {
 <body>
 
 <div class="sidebar">
-  <a class="" href="personalProfile.php">Personal Profile</a>
-  <a href="educationProfile.php">Eduacational Profile</a>
-  <a href="professionalProfile.php">Professional Profile</a>
-  <a href="privacySecurity.php">Privacy & Security</a>
+  <a class="" href="personalProfile.php?username=<?php echo $username;?>">Personal Profile</a>
+  <a href="educationProfile.php?username=<?php echo $username;?>">Eduacational Profile</a>
+  <a href="professionalProfile.php?username=<?php echo $username;?>">Professional Profile</a>
+  <?php
+
+  if($username == $current_username){
+    echo'
+  <a href="privacySecurity.php?username='.$username.'">Privacy & Security</a>
+  <a href="myTeamRequest.php?username='.$username.'"> My Team Request</a>
+
+  ';
+}
+  ?>
 </div>
 
 </body>

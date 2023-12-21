@@ -2,6 +2,16 @@
 
   include("config.php");
   include("hackathonAdmin.php");
+if(!isset($_SESSION['login_sess'])){
+     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Please login first
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+echo "<script>setTimeout(\"location.href = 'hackathonHome.php';\",1500);</script>";
+}else{
+
+$username = $_SESSION['login_user'];
+}
 
 
 ?>
@@ -34,9 +44,11 @@
       $res = mysqli_query($con,"select * from hackathon_list where hackathon_username = '$username' AND approved =0");
 
        $rowcount = mysqli_num_rows($res);
+       $noResult = true;
 
 
       while($row = mysqli_fetch_assoc($res)){
+        $noResult = false;
       $hackathon_organizer = $row['hackathon_organizer'];
       $hackathon_name = $row['hackathon_name'];
       $hackathon_desc = $row['hackathon_desc'];
@@ -119,6 +131,15 @@ if($rowcount>0){
 
   }
 
+}
+
+if($noResult){
+
+    echo '<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">No Result Found</h1>
+  </div>
+</div>';
 }
 
 

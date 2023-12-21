@@ -1,6 +1,16 @@
 <?php
 
 include("header.php");
+if(!isset($_SESSION['login_sess'])){
+     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Please login first
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+echo "<script>setTimeout(\"location.href = 'hackathonHome.php';\",1500);</script>";
+}else{
+
+$username = $_SESSION['login_user'];
+}
 
 ?>
 

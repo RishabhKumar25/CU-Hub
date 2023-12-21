@@ -2,7 +2,6 @@
 
 
 include("config.php");
-include ("loginModal.php");
 include("header.php");
 
 
@@ -23,64 +22,80 @@ include("header.php");
   </head>
   <body>
 
-    <div>
-    
+  <section class="vh-120" style="background-color: #eee;">
+  <div class="container h-110">
+    <div class="row d-flex justify-content-center align-items-center h-110">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 10px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                <form class="mx-1 mx-md-4" method="post">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" name="name" />
+                      <label class="form-label" for="form3Example1c">Your Name</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example3c" class="form-control" name="username" />
+                      <label class="form-label" for="form3Example3c">Username</label>
+                    </div>
+                  </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="form3Example3c" class="form-control" name="email" />
+                      <label class="form-label" for="form3Example3c">Your Email</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4c" class="form-control" name="password" />
+                      <label class="form-label" for="form3Example4c">Password</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4cd" class="form-control" name="cpassword" />
+                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg" name="register">Register</button>
+                  </div>
 
 
-    </div>
-   
+                </form>
 
-  <section class="login_section">
-
-    <div class="login_parent signup_parent">
-      <div class="login_left signup_left">
-        <h1>Create free account...</h1>
-        <form action="" method="post">
-          <input type="text" placeholder="Name" name="name"/>
-          <input type="text" placeholder="Username" name ="username"/>
-          <input type="email" placeholder="Email" name="email"/>
-          <input type="password" placeholder="Password" name="password"/>
-          <input type="password" placeholder="Confirm Password" name="cpassword"/>
-          <button type="submit" class="primary_btn" name="register">Sign up</button>
-
-
-        </form>
-
-          <button class="btn btn-primary text-white ms-5" data-bs-toggle="modal" data-bs-target="#loginModal"  type="submit">Login</button>
-      </div>
-      <div class="login_right">
-
-        <div class="login_right_content">
-              <h1 style="margin-bottom: 0.2rem;">CU HUB</h1>
-              <p style="font-size:1.2rem; font-style: italic; font-weight: 600; color: #fff5ee; margin-bottom: 1rem;">A place to explore...</p>
-              <div class="box box1">
-                Ask your seniors
               </div>
-              <div class="box box2">
-                Join the community
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://source.unsplash.com/400x400/?lock"
+                  class="img-fluid" alt="Sample image">
+
               </div>
-              <div class="box box3">
-                Show your records
-              </div>
-
-              <div class="login_right_social_icons">
-                <i class="fab fa-linkedin"></i>
-                <i class="fab fa-instagram-square"></i>
-                <i class="fab fa-github-square"></i>
-              </div>
-
-
-
-
+            </div>
+          </div>
         </div>
-
-       </div>
+      </div>
     </div>
-
-
-
-
-  </section>
+  </div>
+</section>
 
   
       <?php 
@@ -93,7 +108,7 @@ include("header.php");
         $password = $_POST["password"];
         $cpassword = $_POST["cpassword"];
 
-       $result =  mysqli_query($con,"insert into login values('','$name','$username','$email','$password','$cpassword')");
+       $result =  mysqli_query($con,"insert into login values('$name','$username','$email','$password','$cpassword')");
 
         mysqli_query($con,"insert into education values('','$username','','','')");
         mysqli_query($con,"insert into professional values('','$username','','','')");
@@ -101,9 +116,17 @@ include("header.php");
       
 
       if($result){
-        echo "User registration succeed";
+
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong>Now you can login..
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+    
       }else{
-        echo "User registration failed";
+ echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Oops!</strong> Something went wrong..
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
       }
     }
 

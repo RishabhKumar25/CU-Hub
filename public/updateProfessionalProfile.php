@@ -125,7 +125,7 @@ if($result){
 
 		 if($updateresult){
 
-        echo "<script>window.location.href='professionalProfile.php'</script>";
+        echo "<script>window.location.href='professionalProfile.php?username=$username'</script>";
 		 }else{
 		 	echo "Something went wrong";
 		 }

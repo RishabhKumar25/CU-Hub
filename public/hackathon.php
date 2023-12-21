@@ -52,6 +52,9 @@ $hackathon_id = $_GET['hackathon_id'];
       $hackathon_second_runner_prize = $row['hackathon_second_runner_prize'];
       $hackathon_participants_prize = $row['hackathon_participants_prize'];
       $hackathon_id = $row['hackathon_id'];
+      $hackathon_coordinator_email = $row['hackathon_coordinator_email'];
+      $hackathon_registration_link = $row['hackathon_registration_link'];
+
 
 }
 
@@ -70,8 +73,9 @@ $hackathon_id = $_GET['hackathon_id'];
         <div class=""><?php echo $hackathon_date ;?></div>    
         </div>
         <?php
-        echo '
-        <a href="hackathonRegistration.php?hackathon_id='.$hackathon_id.'" class="btn btn-primary mt-3">Register</a>' ?>
+        echo'
+       
+        <a href="'.$hackathon_registration_link.'" target="_blank" class="btn btn-primary mt-3">Register</a>' ?>
   </div>
 </div>
 <div class="card mt-3">

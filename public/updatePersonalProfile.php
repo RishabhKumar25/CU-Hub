@@ -113,7 +113,7 @@ if($result){
 
 		 if($updateresult){
 
-        echo "<script>window.location.href='personalProfile.php'</script>";
+        echo "<script>window.location.href='personalProfile.php?username=$username'</script>";
 		 }else{
 		 	echo "Something went wrong";
 		 }

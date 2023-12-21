@@ -5,7 +5,10 @@ include("sidebar.php");
 if(!isset($_SESSION['login_sess'])){
 	header('location:index.php');
 }
-$username = $_SESSION["login_user"];
+
+$username = $_GET['username'];
+
+$current_username = $_SESSION["login_user"];
    $res=  mysqli_query($con,"select * from login where username='$username'");
    $res1 = mysqli_query($con,"select * from education where edusername = '$username'");
 
@@ -98,7 +101,14 @@ if($result&&$result1){
             </div>
            
             </div>
-				<a href="updateEducationProfile.php"><button class="btn btn-primary card_btn">Edit profile</button></a>
+            <?php
+          
+            if($current_username == $username){
+              echo '
+        <a href="updateEducationProfile.php?username='.$username.'"><button class="btn btn-primary card_btn">Edit profile</button></a> ';
+      }
+        ?>
+
 
 				
 					

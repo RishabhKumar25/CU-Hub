@@ -3,8 +3,18 @@
 include("config.php");
 include("header.php");
 
-if(!isset($_SESSION['login_sess'])){
-    header("location:hackathonHome.php");
+if(isset($_SESSION['login_sess'])){
+    $username = $_SESSION['login_user'];
+
+}
+
+else{
+
+     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  Please login first
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+echo "<script>setTimeout(\"location.href = 'hackathonHome.php';\",1500);</script>";
 }
 
 
@@ -155,6 +165,21 @@ if(!isset($_SESSION['login_sess'])){
     <input type="text" class="form-control" aria-describedby="hackathon_participants_prize" name="hackathon_participants_prize">
   </div>
 
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Team registration form link</label>
+    <input type="text" class="form-control" aria-describedby="hackathon_registration_link" name="hackathon_registration_link">
+    <div id="emailHelp" class="form-text">Google form is preferred.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Hackathon coordinator contact</label>
+    <input type="number" class="form-control" aria-describedby="hackathon_coordinator_contact" name="hackathon_coordinator_contact">
+  </div>
+
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Hackathon coordinator email</label>
+    <input type="email" class="form-control" aria-describedby="hackathon_coordinator_email" name="hackathon_coordinator_email">
+  </div>
 
  
    <button type="submit" class="btn btn-primary" name="addhackathon">Submit</button>
@@ -164,8 +189,11 @@ if(!isset($_SESSION['login_sess'])){
 
 
 	<?php
-    $username = $_SESSION['login_user'];
 $method = $_SERVER['REQUEST_METHOD'];
+if(isset($_SESSION['login_sess'])){
+    $username = $_SESSION['login_user'];
+
+}
 
 
 if(isset($_POST['addhackathon'])){
@@ -185,10 +213,14 @@ if(isset($_POST['addhackathon'])){
  $hackathon_first_runner_prize = $_POST['hackathon_first_runner_prize'];
  $hackathon_second_runner_prize = $_POST['hackathon_second_runner_prize'];
  $hackathon_participants_prize = $_POST['hackathon_participants_prize'];
+ $hackathon_registration_link = $_POST['hackathon_registration_link'];
+ $hackathon_coordinator_contact = $_POST['hackathon_coordinator_contact'];
+ $hackathon_coordinator_email = $_POST['hackathon_coordinator_email'];
  $hackathon_username = $username;
 
 
- $result = mysqli_query($con,"insert into hackathon_list values('','$hackathon_name','$hackathon_organizer','$hackathon_desc','$hackathon_date','$hackathon_prize','$hackathon_reg_start','$hackathon_reg_end','$hackathon_round_start','$hackathon_round_end','$hackathon_result_date','$hackathon_rules','$hackathon_winner_prize','$hackathon_first_runner_prize','$hackathon_second_runner_prize','$hackathon_participants_prize','','$hackathon_username')");
+
+ $result = mysqli_query($con,"insert into hackathon_list values('','$hackathon_name','$hackathon_organizer','$hackathon_desc','$hackathon_date','$hackathon_prize','$hackathon_reg_start','$hackathon_reg_end','$hackathon_round_start','$hackathon_round_end','$hackathon_result_date','$hackathon_rules','$hackathon_winner_prize','$hackathon_first_runner_prize','$hackathon_second_runner_prize','$hackathon_participants_prize','$hackathon_registration_link','$hackathon_coordinator_contact','$hackathon_coordinator_email','','$hackathon_username')");
 
 
  if($result){

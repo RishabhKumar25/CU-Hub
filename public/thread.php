@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("header.php");
+include("loginModal.php");
 // if(!isset($_SESSION['login_sess'])){
 // 	header('location:index.php');
 // }
@@ -25,43 +26,10 @@ $loggedin = false;
 
 // }
 
-
-?>
-
-<?php
-
 $method = $_SERVER['REQUEST_METHOD'];
 $thread_id = $_GET['thread_id'];
-
-if(isset($_POST['commentsubmit'])){
-
-	$comment_content = $_POST["comment_content"];
-
-	$comment_content = $_POST['comment_content'];
-
-	if($loggedin == true){
-		$username = $_SESSION["login_user"];
-
-	$sql = "INSERT INTO `comments` (`comment_id`, `comment_content`, `thread_id`, `comment_username`, `comment_time`) VALUES ('', '$comment_content', '$thread_id', '$username', current_timestamp());";
-	$result = mysqli_query($con,$sql);
-
-	if($result){
-
-		echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success!</strong> Your comment is posted succesfully..
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-
-	}
-}else{
-	echo 'login to comment';
-}
-
-	
-}
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -233,6 +201,39 @@ if(isset($_POST['commentsubmit'])){
   <!-- <hr class="my-4">
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
   
+<?php
+
+
+
+if(isset($_POST['commentsubmit'])){
+
+    $comment_content = $_POST["comment_content"];
+
+    $comment_content = $_POST['comment_content'];
+
+    if($loggedin == true){
+        $username = $_SESSION["login_user"];
+
+    $sql = "INSERT INTO `comments` (`comment_id`, `comment_content`, `thread_id`, `comment_username`, `comment_time`) VALUES ('', '$comment_content', '$thread_id', '$username', current_timestamp());";
+    $result = mysqli_query($con,$sql);
+
+    if($result){
+
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success!</strong> Your comment is posted succesfully..
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+
+    }
+}else{
+    echo '<p class="lead fw-bold">To post a new comment please login first. </p> <button class="btn btn-primary text-white ms-5" data-bs-toggle="modal" data-bs-target="#loginModal"  type="submit">Login</button>';
+}
+
+    
+}
+
+
+?>
 </div>
 </div>
 

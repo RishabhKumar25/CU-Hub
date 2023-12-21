@@ -2,7 +2,10 @@
 
 include("header.php");
 include("config.php");
+
+if(isset($_SESSION['login_sess'])){
 $username = $_SESSION['login_user'];
+}
 
 
 ?>

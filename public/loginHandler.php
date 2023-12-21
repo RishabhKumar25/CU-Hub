@@ -14,7 +14,7 @@
     		session_start();
       		$_SESSION["login_sess"]=1;
       		$_SESSION['login_user']=$username;
- 			header("location:personalProfile.php");
+ 			header("location:personalProfile.php?username=$username");
 		}
 		else{
 

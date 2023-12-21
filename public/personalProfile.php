@@ -5,7 +5,10 @@ include("sidebar.php");
 if(!isset($_SESSION['login_sess'])){
 	header('location:index.php');
 }
-$username = $_SESSION["login_user"];
+
+$username = $_GET['username'];
+
+$current_username = $_SESSION["login_user"];
    $res=  mysqli_query($con,"select * from login where username='$username'");
 
    $result = mysqli_fetch_array($res);
@@ -62,7 +65,7 @@ if($result){
                 <p class="mb-0">Username</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0"><?php echo $fetchusername;?></p>
+                <p class="text-muted mb-0"><?php echo $username;?></p>
               </div>
             </div>
             <hr>
@@ -85,7 +88,13 @@ if($result){
             </div>
            
             </div>
-				<a href="updatePersonalProfile.php"><button class="btn btn-primary card_btn">Edit profile</button></a>
+            <?php
+
+            if($current_username == $username){
+              echo '
+				<a href="updatePersonalProfile.php?username='.$username.'"><button class="btn btn-primary card_btn">Edit profile</button></a> ';
+      }
+        ?>
 
 				
 					

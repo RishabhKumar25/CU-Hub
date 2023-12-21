@@ -108,7 +108,7 @@ if($result){
 
 		 if($updateresult){
 
-        echo "<script>window.location.href='personalProfile.php'</script>";
+        echo "<script>window.location.href='logout.php'</script>";
 		 }else{
 		 	echo "Something went wrong";
 		 }
